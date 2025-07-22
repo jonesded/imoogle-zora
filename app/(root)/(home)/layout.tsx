@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
 
 export const metadata: Metadata = {
-  title: "Zoora", // The missing closing quote is added here
+  title: "Imoogle Talk",
   description: "Video calling App A Zoom Alternative",
   icons: {
     icon: "/icons/logo.svg",
