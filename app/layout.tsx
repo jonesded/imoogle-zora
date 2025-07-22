@@ -36,7 +36,7 @@ export default function RootLayout({
           },
         }}
       >
-        <body className="bg-dark-2 font-sans">
+        <body className="bg-dark-2 dark:bg-dark-2 light:bg-light-2 font-sans transition-colors duration-300">
           <ThemeProvider>
             <Toaster />
             {children}
