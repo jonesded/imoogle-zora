@@ -4,7 +4,8 @@ import StreamVideoProvider from '@/providers/StreamClientProvider';
 
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
-    <main>
+    // This Component renders the homepage layout
+    <main> 
       <StreamVideoProvider>{children}</StreamVideoProvider>
     </main>
   );

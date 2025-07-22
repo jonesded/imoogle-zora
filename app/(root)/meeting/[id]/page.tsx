@@ -19,9 +19,11 @@ const MeetingPage = () => {
 
   if (!isLoaded || isCallLoading) return <Loader />;
 
+
+  // This section revoke the admin portal (Subsequently)
   if (!call) return (
     <p className="text-center text-3xl font-bold text-white">
-      Call Not Found
+      Call Not Found (404) please check your network
     </p>
   );
 

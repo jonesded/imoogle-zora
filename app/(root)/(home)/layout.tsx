@@ -5,20 +5,25 @@ import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
 
 export const metadata: Metadata = {
-  title: 'YOOM',
-  description: 'A workspace for your team, powered by Stream Chat and Clerk.',
+  title: "Zoora", // The missing closing quote is added here
+  description: "Video calling App A Zoom Alternative",
+  icons: {
+    icon: "/icons/logo.svg",
+  },
 };
 
-const RootLayout = ({ children }: Readonly<{children: ReactNode}>) => {
+const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
     <main className="relative">
       <Navbar />
 
       <div className="flex">
         <Sidebar />
-        
+
         <section className="flex min-h-screen flex-1 flex-col px-6 pb-6 pt-28 max-md:pb-14 sm:px-14">
-          <div className="w-full">{children}</div>
+          <div className="w-full">{children}</div> 
+          {/* This is sublet to the primary value () */}
+          {/* <div className= "s-full">{children.(data)}</div>  */}
         </section>
       </div>
     </main>
@@ -26,3 +31,4 @@ const RootLayout = ({ children }: Readonly<{children: ReactNode}>) => {
 };
 
 export default RootLayout;
+
