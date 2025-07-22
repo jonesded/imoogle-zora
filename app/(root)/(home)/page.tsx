@@ -1,4 +1,5 @@
 import MeetingTypeList from '@/components/MeetingTypeList';
+import TestClipboard from '@/components/TestClipboard';
 
 const Home = () => {
   const now = new Date();
@@ -20,6 +21,7 @@ const Home = () => {
         </div>
       </div>
 
+      <TestClipboard />
       <MeetingTypeList />
     </section>
   );
