@@ -2,96 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
  --border-cross-origin: #3fff;
  --border-crosson-webkit: #ffff;
  --primary-color-onload : #0000;
  --primary-subcolor-afterload: #3f3e;
  --font-size: 30px;
- /* --font-primary-size: ;
- --font-yellow-color: ;
- --blue-yelow-color-primary: --var(#ffff);
- --yellow-sub-primary-div: --var(#3ffe);
- --border-size: 12px;
- --border-primary-color: #efefee;
- --3defe-dark-color:var(--3defe-dark-color); */
-
-}
-
-/* Dark theme (default) */
-.dark {
-  --bg-primary: #161925;
-  --bg-secondary: #1C1F2E;
-  --bg-tertiary: #252A41;
-  --text-primary: #ffffff;
-  --text-secondary: #C9DDFF;
-}
-
-/* Light theme */
-.light {
-  --bg-primary: #F8FAFC;
-  --bg-secondary: #FFFFFF;
-  --bg-tertiary: #F1F5F9;
-  --text-primary: #1C1F2E;
-  --text-secondary: #64748B;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-/* Theme-aware body styles */
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.light body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
-
-.dark body {
-  background-color: #161925;
-  color: #ffffff;
-}
-
-/* Theme-aware navbar */
-.light nav {
-  background-color: var(--bg-secondary) !important;
-  border-bottom: 1px solid var(--bg-tertiary);
-}
-
-.light nav p {
-  color: var(--text-primary) !important;
-}
-
-/* Theme-aware sidebar */
-.light .sidebar {
-  background-color: var(--bg-secondary) !important;
-}
-
-.light .sidebar-item {
-  color: var(--text-primary) !important;
-}
-
-.light .sidebar-item:hover {
-  background-color: var(--bg-tertiary) !important;
-}
-
-/* Theme-aware hero section */
-.light .hero-section {
-  background: linear-gradient(135deg, #E2E8F0 0%, #F1F5F9 100%);
-  color: var(--text-primary);
-}
-
-.light .glassmorphism {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--text-primary);
 }
 
 /* ======== stream css overrides ======== */
@@ -198,7 +120,7 @@ body {
 }
 
 /******************************
- THEME-AWARE STYLES
+ DARK MODE COLOR SCHEME
  ******************************/
 
 .p{
@@ -210,4 +132,5 @@ body {
     border-radius: 200px;
     width: 50%;
     height: 50%;
+    /* height: 100vh;  (this is optional you can undocument this if your use case have different scenario)*/
 }
