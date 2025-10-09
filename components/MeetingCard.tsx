@@ -30,6 +30,53 @@ const MeetingCard = ({
 }: MeetingCardProps) => {
   const { toast } = useToast();
 
+  const copyToClipboard = async () => {
+    try {
+      // First try the modern Clipboard API
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(link);
+        toast({
+          title: "Link Copied",
+          description: "Meeting link has been copied to clipboard",
+        });
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement("textarea");
+        textArea.value = link;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          document.execCommand('copy');
+          toast({
+            title: "Link Copied",
+            description: "Meeting link has been copied to clipboard",
+          });
+        } catch (err) {
+          console.error('Fallback copy failed:', err);
+          toast({
+            title: "Copy Failed",
+            description: "Unable to copy link. Please copy manually: " + link,
+            variant: "destructive",
+          });
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+    } catch (err) {
+      console.error('Copy to clipboard failed:', err);
+      toast({
+        title: "Copy Failed", 
+        description: "Unable to copy link. Please copy manually: " + link,
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-dark-1 px-5 py-8 xl:max-w-[568px]">
       <article className="flex flex-col gap-5">
@@ -67,12 +114,7 @@ const MeetingCard = ({
               &nbsp; {buttonText}
             </Button>
             <Button
-              onClick={() => {
-                navigator.clipboard.writeText(link);
-                toast({
-                  title: "Link Copied",
-                });
-              }}
+              onClick={copyToClipboard}
               className="bg-dark-4 px-6"
             >
               <Image

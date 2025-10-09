@@ -53,7 +53,54 @@ const PersonalRoom = () => {
     router.push(`/meeting/${meetingId}?personal=true`);
   };
 
-  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meetingId}?personal=true`;
+  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/meeting/${meetingId}?personal=true`;
+
+  const copyInvitation = async () => {
+    try {
+      // First try the modern Clipboard API
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(meetingLink);
+        toast({
+          title: "Link Copied",
+          description: "Invitation link has been copied to clipboard",
+        });
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement("textarea");
+        textArea.value = meetingLink;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          document.execCommand('copy');
+          toast({
+            title: "Link Copied",
+            description: "Invitation link has been copied to clipboard",
+          });
+        } catch (err) {
+          console.error('Fallback copy failed:', err);
+          toast({
+            title: "Copy Failed",
+            description: "Unable to copy link. Please copy manually: " + meetingLink,
+            variant: "destructive",
+          });
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+    } catch (err) {
+      console.error('Copy to clipboard failed:', err);
+      toast({
+        title: "Copy Failed",
+        description: "Unable to copy link. Please copy manually: " + meetingLink,
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <section className="flex size-full flex-col gap-10 text-white">
@@ -69,12 +116,7 @@ const PersonalRoom = () => {
         </Button>
         <Button
           className="bg-dark-3"
-          onClick={() => {
-            navigator.clipboard.writeText(meetingLink);
-            toast({
-              title: "Link Copied",
-            });
-          }}
+          onClick={copyInvitation}
         >
           Copy Invitation
         </Button>

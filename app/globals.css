@@ -2,21 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
  --border-cross-origin: #3fff;
  --border-crosson-webkit: #ffff;
  --primary-color-onload : #0000;
  --primary-subcolor-afterload: #3f3e;
  --font-size: 30px;
- /* --font-primary-size: ;
- --font-yellow-color: ;
- --blue-yelow-color-primary: --var(#ffff);
- --yellow-sub-primary-div: --var(#3ffe);
- --border-size: 12px;
- --border-primary-color: #efefee;
- --3defe-dark-color:var(--3defe-dark-color); */
-
 }
 
 * {
@@ -128,12 +119,11 @@
   }
 }
 
-
 /******************************
  DARK MODE COLOR SCHEME
  ******************************/
 
- .p{
+.p{
     background-color: #0000;
     border:#0000;
     outline-color: navajowhite;
@@ -143,4 +133,4 @@
     width: 50%;
     height: 50%;
     /* height: 100vh;  (this is optional you can undocument this if your use case have different scenario)*/
- }
+}

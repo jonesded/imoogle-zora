@@ -12,7 +12,7 @@ const MobileNav = () => {
   const pathname = usePathname();
 
   return (
-    <section className="w-full max-w-[264px]">
+    <section className="w-full max-w-[300px]">
       <Sheet>
         <SheetTrigger asChild>
           <Image
@@ -23,15 +23,18 @@ const MobileNav = () => {
             className="cursor-pointer sm:hidden"
           />
         </SheetTrigger>
-        <SheetContent side="left" className="border-none bg-dark-1">
-          <Link href="/" className="flex items-center gap-1">
+        <SheetContent side="left" className="border-none bg-dark-1 w-[280px] sm:w-[300px]">
+          <Link href="/" className="flex items-center gap-2 mb-4">
             <Image
               src="/icons/logo.svg"
-              width={32}
-              height={32}
-              alt="yoom logo"
+              width={28}
+              height={28}
+              alt="Imoogle Talk logo"
+              className="flex-shrink-0"
             />
-            <p className="text-[26px] font-extrabold text-white">YOOM</p>
+            <p className="text-lg sm:text-xl font-extrabold text-white leading-tight">
+              Imoogle Talk
+            </p>
           </Link>
           <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">
             <SheetClose asChild>

@@ -65,10 +65,62 @@ const MeetingTypeList = () => {
     }
   };
 
-  if (!client || !user) return <Loader />;
+  const copyMeetingLink = async () => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const meetingLink = `${baseUrl}/meeting/${callDetail?.id}`;
+    
+    // Debug logging
+    console.log('Base URL:', baseUrl);
+    console.log('Meeting ID:', callDetail?.id);
+    console.log('Full meeting link:', meetingLink);
+    
+    try {
+      // First try the modern Clipboard API
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(meetingLink);
+        toast({
+          title: 'Link Copied',
+          description: 'Meeting link has been copied to clipboard',
+        });
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement("textarea");
+        textArea.value = meetingLink;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          document.execCommand('copy');
+          toast({
+            title: 'Link Copied',
+            description: 'Meeting link has been copied to clipboard',
+          });
+        } catch (err) {
+          console.error('Fallback copy failed:', err);
+          toast({
+            title: 'Copy Failed',
+            description: 'Unable to copy link. Please copy manually: ' + meetingLink,
+            variant: 'destructive',
+          });
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+    } catch (err) {
+      console.error('Copy to clipboard failed:', err);
+      toast({
+        title: 'Copy Failed',
+        description: 'Unable to copy link. Please copy manually: ' + meetingLink,
+        variant: 'destructive',
+      });
+    }
+  };
 
-  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`;
-  // Undeclared variable optional for global case use scenario
+  if (!client || !user) return <Loader />;
 
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -139,10 +191,7 @@ const MeetingTypeList = () => {
           isOpen={meetingState === 'isScheduleMeeting'}
           onClose={() => setMeetingState(undefined)}
           title="Meeting Created"
-          handleClick={() => {
-            navigator.clipboard.writeText(meetingLink);
-            toast({ title: 'Link Copied' });
-          }}
+          handleClick={copyMeetingLink}
           image={'/icons/checked.svg'}
           buttonIcon="/icons/copy.svg"
           className="text-center"
