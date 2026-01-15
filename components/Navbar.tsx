@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SignedIn, UserButton } from '@clerk/nextjs';
 
 import MobileNav from './MobileNav';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const Navbar = () => {
   return (
@@ -20,6 +21,7 @@ const Navbar = () => {
         </p>
       </Link>
       <div className="flex-between gap-5">
+        <ThemeSwitcher />
         <SignedIn>
           <UserButton afterSignOutUrl="/sign-in" />
         </SignedIn>

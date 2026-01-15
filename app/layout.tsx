@@ -6,6 +6,7 @@ import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Imoogle Talk",
@@ -36,8 +37,10 @@ export default function RootLayout({
         }}
       >
         <body className="bg-dark-2 font-sans">
-          <Toaster />
-          {children}
+          <ThemeProvider>
+            <Toaster />
+            {children}
+          </ThemeProvider>
         </body>
       </ClerkProvider>
     </html>
